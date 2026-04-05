@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FreshForge</title>
+<link href="Buyme.css" rel="stylesheet"/>
+</head>
+
+<body>
+ 
+<nav class="navbar">
+  <div class="logo">Fresh<em>Forge</em></div>
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="Search fresh products…"/>
+  </div>
+  <div class="nav-links">
+    <a href="#">About</a>
+    <a href="#" class="active">Products</a>
+    <a href="#">Reviews</a>
+  </div>
+  <button class="cart-btn" id="cartBtn" onclick="toggleCart()">
+    🛒 <span class="cart-label">Cart</span>
+    <span class="cart-badge" id="cartBadge" style="display:none">0</span>
+  </button>
+</nav>
+ 
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+ 
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <span class="cart-title">🛒 Your Cart</span>
+    <button class="cart-close" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty" id="cartEmpty">
+      <span style="font-size:2.5rem">🛒</span>
+      <p>Your cart is empty</p>
+      <small>Add some fresh items!</small>
+    </div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total-row">
+      <span>Total</span>
+      <span class="cart-total-price" id="cartTotal">₱0</span>
+    </div>
+    <button class="checkout-btn" onclick="checkout()">Checkout →</button>
+    <button class="clear-btn" onclick="clearCart()">Clear cart</button>
+  </div>
+</div>
+ 
+<div class="Elyu-section">
+  <div class="Elyu-title">Shop by Category</div>
+  <div class="Elyu-grid">
+    <div class="Elyu-item active" onclick="filterCat(this,'all')">
+      <div class="Elyu-icon">🛒</div><div class="Elyu-label">All Items</div>
+    </div>
+    <div class="Elyu-item" onclick="filterCat(this,'dairy')">
+      <div class="Elyu-icon">🥛</div><div class="Elyu-label">Dairy</div>
+    </div>
+    <div class="Elyu-item" onclick="filterCat(this,'meat')">
+      <div class="Elyu-icon">🥩</div><div class="Elyu-label">Meat</div>
+    </div>
+    <div class="Elyu-item" onclick="filterCat(this,'seafood')">
+      <div class="Elyu-icon">🐟</div><div class="Elyu-label">Seafood</div>
+    </div>
+    <div class="Elyu-item" onclick="filterCat(this,'veggies')">
+      <div class="Elyu-icon">🥦</div><div class="Elyu-label">Veggies</div>
+    </div>
+    <div class="Elyu-item" onclick="filterCat(this,'fruits')">
+      <div class="Elyu-icon">🍎</div><div class="Elyu-label">Fruits</div>
+    </div>
+    <div class="Elyu-item" onclick="filterCat(this,'snacks')">
+      <div class="Elyu-icon">🍪</div><div class="Elyu-label">Snacks</div>
+    </div>
+    <div class="Elyu-item" onclick="filterCat(this,'drinks')">
+      <div class="Elyu-icon">🥤</div><div class="Elyu-label">Drinks</div>
+    </div>
+    <div class="Elyu-item" onclick="filterCat(this,'eggs')">
+      <div class="Elyu-icon">🥚</div><div class="Elyu-label">Eggs</div>
+    </div>
+    <div class="Elyu-item" onclick="filterCat(this,'poultry')">
+      <div class="Elyu-icon">🍗</div><div class="Elyu-label">Poultry</div>
+    </div>
+  </div>
+</div>
+ 
+<div class="main">
+ 
+  <div class="work">
+    <div class="work-text">
+      <h2>Fresh Picks, Every Day 🌿</h2>
+      <p>Farm-to-table quality delivered straight to your door.</p>
+    </div>
+    <button class="work-cta">Shop Now</button>
+  </div>
+ 
+  <div class="section-header">
+    <div class="section-title" id="sectionTitle">All Products</div>
+    <a href="#" class="see-all">See All</a>
+  </div>
+ 
+  <div class="product-grid" id="productGrid">
+ 
+    <div class="product-card" data-cat="dairy">
+      <div class="card-img-wrap">🥛<div class="card-badge">Fresh</div></div>
+      <div class="card-body">
+        <div class="card-name"> Milk</div>
+        <div class="card-desc">Helps strengthen your bones</div>
+        <div class="card-price">₱151</div>
+        <div class="card-controls">
+          <select><option>Small</option><option>Medium</option><option>Large</option></select>
+          <input type="number" value="1" min="1"/>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="product-card" data-cat="dairy">
+      <div class="card-img-wrap">🧀</div>
+      <div class="card-body">
+        <div class="card-name"> Cheese</div>
+        <div class="card-desc">Rich in calcium and protein</div>
+        <div class="card-price">₱175</div>
+        <div class="card-controls">
+          <select><option>Small</option><option>Medium</option><option>Large</option></select>
+          <input type="number" value="1" min="1"/>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="product-card" data-cat="meat">
+      <div class="card-img-wrap">🥩<div class="card-badge">Popular</div></div>
+      <div class="card-body">
+        <div class="card-name">Meat</div>
+        <div class="card-desc">Provides heme iron</div>
+        <div class="card-price">₱500</div>
+        <div class="card-controls">
+          <select><option>Small</option><option>Medium</option><option>Large</option></select>
+          <input type="number" value="1" min="1"/>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="product-card" data-cat="snacks">
+      <div class="card-img-wrap">🍪</div>
+      <div class="card-body">
+        <div class="card-name">Oreo</div>
+        <div class="card-desc">A sweet biscuit treat</div>
+        <div class="card-price">₱95</div>
+        <div class="card-controls">
+          <select><option>Small</option><option>Medium</option><option>Large</option></select>
+          <input type="number" value="1" min="1"/>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="product-card" data-cat="dairy">
+      <div class="card-img-wrap">🫙</div>
+      <div class="card-body">
+        <div class="card-name">Yogurt</div>
+        <div class="card-desc">Good for digestion</div>
+        <div class="card-price">₱120</div>
+        <div class="card-controls">
+          <select><option>Small</option><option>Medium</option><option>Large</option></select>
+          <input type="number" value="1" min="1"/>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="product-card" data-cat="dairy">
+      <div class="card-img-wrap">🧈</div>
+      <div class="card-body">
+        <div class="card-name">Butter</div>
+        <div class="card-desc">Perfect for cooking</div>
+        <div class="card-price">₱55</div>
+        <div class="card-controls">
+          <select><option>Small</option><option>Medium</option><option>Large</option></select>
+          <input type="number" value="1" min="1"/>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="product-card" data-cat="poultry">
+      <div class="card-img-wrap">🍗<div class="card-badge">Fresh</div></div>
+      <div class="card-body">
+        <div class="card-name">Chicken</div>
+        <div class="card-desc">High in protein</div>
+        <div class="card-price">₱460</div>
+        <div class="card-controls">
+          <select><option>Small</option><option>Medium</option><option>Large</option></select>
+          <input type="number" value="1" min="1"/>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="product-card" data-cat="seafood">
+      <div class="card-img-wrap">🐟</div>
+      <div class="card-body">
+        <div class="card-name">Fish</div>
+        <div class="card-desc">Rich in omega-3</div>
+        <div class="card-price">₱340</div>
+        <div class="card-controls">
+          <select><option>Small</option><option>Medium</option><option>Large</option></select>
+          <input type="number" value="1" min="1"/>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="product-card" data-cat="veggies">
+      <div class="card-img-wrap">🥕</div>
+      <div class="card-body">
+        <div class="card-name">Carrots</div>
+        <div class="card-desc">Good for eyesight</div>
+        <div class="card-price">₱30</div>
+        <div class="card-controls">
+          <select><option>Small</option><option>Medium</option><option>Large</option></select>
+          <input type="number" value="1" min="1"/>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="product-card" data-cat="veggies">
+      <div class="card-img-wrap">🥦</div>
+      <div class="card-body">
+        <div class="card-name">Broccoli</div>
+        <div class="card-desc">Rich in vitamins</div>
+        <div class="card-price">₱80</div>
+        <div class="card-controls">
+          <select><option>Small</option><option>Medium</option><option>Large</option></select>
+          <input type="number" value="1" min="1"/>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="product-card" data-cat="fruits">
+      <div class="card-img-wrap">🍎</div>
+      <div class="card-body">
+        <div class="card-name">Apples</div>
+        <div class="card-desc">Keeps the doctor away</div>
+        <div class="card-price">₱180</div>
+        <div class="card-controls">
+          <select><option>Small</option><option>Medium</option><option>Large</option></select>
+          <input type="number" value="1" min="1"/>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="product-card" data-cat="fruits">
+      <div class="card-img-wrap">🍌</div>
+      <div class="card-body">
+        <div class="card-name">Bananas</div>
+        <div class="card-desc">Energy booster</div>
+        <div class="card-price">₱120</div>
+        <div class="card-controls">
+          <select><option>Small</option><option>Medium</option><option>Large</option></select>
+          <input type="number" value="1" min="1"/>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="product-card" data-cat="snacks">
+      <div class="card-img-wrap">🥔</div>
+      <div class="card-body">
+        <div class="card-name">Potato Chips</div>
+        <div class="card-desc">Crunchy snack</div>
+        <div class="card-price">₱85</div>
+        <div class="card-controls">
+          <select><option>Small</option><option>Medium</option><option>Large</option></select>
+          <input type="number" value="1" min="1"/>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="product-card" data-cat="snacks">
+      <div class="card-img-wrap">🍪</div>
+      <div class="card-body">
+        <div class="card-name">Butter Cookie</div>
+        <div class="card-desc">Sweet treats</div>
+        <div class="card-price">₱150</div>
+        <div class="card-controls">
+          <select><option>Small</option><option>Medium</option><option>Large</option></select>
+          <input type="number" value="1" min="1"/>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="product-card" data-cat="drinks">
+      <div class="card-img-wrap">🥤</div>
+      <div class="card-body">
+        <div class="card-name">Soft Drinks</div>
+        <div class="card-desc">Refreshing beverage</div>
+        <div class="card-price">₱60</div>
+        <div class="card-controls">
+          <select><option>Small</option><option>Medium</option><option>Large</option></select>
+          <input type="number" value="1" min="1"/>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="product-card" data-cat="drinks">
+      <div class="card-img-wrap">🧃</div>
+      <div class="card-body">
+        <div class="card-name">Fruit Juice</div>
+        <div class="card-desc">Vitamin-rich drink</div>
+        <div class="card-price">₱110</div>
+        <div class="card-controls">
+          <select><option>Small</option><option>Medium</option><option>Large</option></select>
+          <input type="number" value="1" min="1"/>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="product-card" data-cat="eggs">
+      <div class="card-img-wrap">🥚<div class="card-badge">Daily</div></div>
+      <div class="card-body">
+        <div class="card-name">Eggs</div>
+        <div class="card-desc">Protein-rich</div>
+        <div class="card-price">₱210</div>
+        <div class="card-controls">
+          <select><option>Small</option><option>Medium</option><option>Large</option></select>
+          <input type="number" value="1" min="1"/>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="product-card" data-cat="snacks">
+      <div class="card-img-wrap">🍕</div>
+      <div class="card-body">
+        <div class="card-name">Pizza</div>
+        <div class="card-desc">Delicious snack</div>
+        <div class="card-price">₱125</div>
+        <div class="card-controls">
+          <select><option>Small</option><option>Medium</option><option>Large</option></select>
+          <input type="number" value="1" min="1"/>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+<div class="product-card" data-cat="poultry">
+      <div class="card-img-wrap">🦃</div>
+      <div class="card-body">
+        <div class="card-name">Turkey</div>
+        <div class="card-desc">Lean protein</div>
+        <div class="card-price">₱250</div>
+        <div class="card-controls">
+          <select><option>Small</option><option>Medium</option><option>Large</option></select>
+          <input type="number" value="1" min="1"/>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+<div class="product-card" data-cat="poultry">
+      <div class="card-img-wrap">🦆</div>
+      <div class="card-body">
+        <div class="card-name">Duck</div>
+        <div class="card-desc">Fresh from the farm</div>
+        <div class="card-price">₱124</div>
+        <div class="card-controls">
+          <select><option>Small</option><option>Medium</option><option>Large</option></select>
+          <input type="number" value="1" min="1"/>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+ 
+  </div>
+</div>
+ 
+<footer>© 2025 <span>FreshForge</span> — Fresh produce, delivered with care.</footer>
+ 
+<script>
+let cart = [];
+ 
+document.querySelectorAll('.product-card .add-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+ 
+    const card = this.closest('.product-card');
+ 
+    const name = card.querySelector('.card-name').textContent.trim();
+ 
+    const priceText = card.querySelector('.card-price').textContent;
+    const price = parseInt(priceText.replace('₱', '').replace(/,/g, ''));
+ 
+    const qty = parseInt(card.querySelector('input[type="number"]').value) || 1;
+ 
+    const size = card.querySelector('select').value;
+ 
+    const key = name + '-' + size;
+ 
+    const existing = cart.find(function(item) { return item.key === key; });
+ 
+    if (existing) {
+      existing.qty += qty;   // just increase quantity
+    } else {
+      cart.push({ key: key, name: name, price: price, qty: qty, size: size });
+    }
+ 
+    updateCartUI();
+ 
+    const btn = this;
+    btn.textContent = '✓ Added!';
+    btn.style.background = '#26d0ce';
+    btn.style.color = '#1a2980';
+    setTimeout(function() {
+      btn.textContent = 'Add to Cart';
+      btn.style.background = '';
+      btn.style.color = '';
+    }, 1500);
+ 
+  });
+});
+ 
+function updateCartUI() {
+  const badge    = document.getElementById('cartBadge');
+  const itemsEl  = document.getElementById('cartItems');
+  const emptyEl  = document.getElementById('cartEmpty');
+  const footerEl = document.getElementById('cartFooter');
+  const totalEl  = document.getElementById('cartTotal');
+ 
+  const totalQty   = cart.reduce(function(sum, i) { return sum + i.qty; }, 0);
+  const totalPrice = cart.reduce(function(sum, i) { return sum + (i.price * i.qty); }, 0);
+ 
+  badge.textContent = totalQty;
+  badge.style.display = totalQty > 0 ? 'flex' : 'none';
+ 
+  if (cart.length === 0) {
+    emptyEl.style.display  = 'flex';
+    footerEl.style.display = 'none';
+  } else {
+    emptyEl.style.display  = 'none';
+    footerEl.style.display = 'flex';
+  }
+ 
+  itemsEl.querySelectorAll('.cart-item').forEach(function(el) { el.remove(); });
+ 
+  cart.forEach(function(item) {
+    const row = document.createElement('div');
+    row.className = 'cart-item';
+    row.innerHTML =
+      '<div class="ci-info">' +
+        '<div class="ci-name">' + item.name + '</div>' +
+        '<div class="ci-size">' + item.size + '</div>' +
+      '</div>' +
+      '<div class="ci-controls">' +
+        '<button class="ci-btn" onclick="changeQty(\'' + item.key + '\', -1)">−</button>' +
+        '<span class="ci-qty">' + item.qty + '</span>' +
+        '<button class="ci-btn" onclick="changeQty(\'' + item.key + '\', 1)">+</button>' +
+      '</div>' +
+      '<div class="ci-price">₱' + (item.price * item.qty).toLocaleString() + '</div>' +
+      '<button class="ci-remove" onclick="removeItem(\'' + item.key + '\')">✕</button>';
+ 
+    itemsEl.appendChild(row);
+  });
+ 
+  totalEl.textContent = '₱' + totalPrice.toLocaleString();
+}
+ 
+function changeQty(key, delta) {
+  const item = cart.find(function(i) { return i.key === key; });
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) {
+    cart = cart.filter(function(i) { return i.key !== key; });
+  }
+  updateCartUI();
+}
+ 
+function removeItem(key) {
+  cart = cart.filter(function(i) { return i.key !== key; });
+  updateCartUI();
+}
+ 
+function clearCart() {
+  cart = [];
+  updateCartUI();
+}
+ 
+function toggleCart() {
+  document.getElementById('cartDrawer').classList.toggle('open');
+  document.getElementById('cartOverlay').classList.toggle('open');
+  // Lock body scroll when cart is open
+  const isOpen = document.getElementById('cartDrawer').classList.contains('open');
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+ 
+function checkout() {
+  if (cart.length === 0) return;
+  const total = cart.reduce(function(sum, i) { return sum + i.price * i.qty; }, 0);
+  alert('Order placed!\nTotal: ₱' + total.toLocaleString() + '\n\nThank you for shopping at FreshForge! 🎉');
+  clearCart();
+  toggleCart();
+}
+ 
+function filterCat(el, cat) {
+  document.querySelectorAll('.Elyu-item').forEach(function(i) { i.classList.remove('active'); });
+  el.classList.add('active');
+  document.querySelectorAll('.product-card').forEach(function(c) {
+    c.style.display = (cat === 'all' || c.dataset.cat === cat) ? 'flex' : 'none';
+  });
+  const label = cat === 'all' ? 'All Products' : el.querySelector('.Elyu-label').textContent;
+  document.getElementById('sectionTitle').textContent = label;
+}
+ 
+document.getElementById('searchInput').addEventListener('input', function() {
+  const q = this.value.toLowerCase();
+  document.querySelectorAll('.product-card').forEach(function(c) {
+    const name = c.querySelector('.card-name').textContent.toLowerCase();
+    c.style.display = name.includes(q) ? 'flex' : 'none';
+  });
+});
+</script>
+ 
+</body>
+</html>
+ 
